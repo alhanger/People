@@ -55,7 +55,6 @@ public class People {
     }
 
     static void writeToJson (HashMap<String, ArrayList<Person>> citizens) {
-        //ArrayList<Person> list = citizens.get(entry);
         JsonSerializer serializer = new JsonSerializer();
         String output = serializer.include("*").serialize(citizens);
 
