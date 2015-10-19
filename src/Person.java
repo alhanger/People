@@ -29,4 +29,28 @@ public class Person implements Comparable {
     public String toString() {
         return String.format("Contact %s %s at %s", firstName, lastName, email);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getIpAddress() {
+        return ipAddress;
+    }
 }

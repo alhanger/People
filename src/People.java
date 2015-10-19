@@ -46,7 +46,6 @@ public class People {
                 list.add(individual);
             }
         }
-        //System.out.println();
     }
 
     static void sortMap(HashMap<String, ArrayList<Person>> citizens) {
@@ -58,7 +57,7 @@ public class People {
     static void writeToJson (HashMap<String, ArrayList<Person>> citizens) {
         //ArrayList<Person> list = citizens.get(entry);
         JsonSerializer serializer = new JsonSerializer();
-        String output = serializer.serialize(citizens);
+        String output = serializer.include("*").serialize(citizens);
 
         writeFile("people.json", output);
     }
