@@ -1,5 +1,8 @@
+import jodd.json.JsonSerializer;
+
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -13,7 +16,8 @@ public class People {
 
         parseData("people.csv", citizens);
         sortMap(citizens);
-        System.out.println(citizens.toString());
+        System.out.println(citizens);
+        writeToJson(citizens);
     }
 
     static void parseData(String file, HashMap<String, ArrayList<Person>> citizens) {
@@ -51,6 +55,14 @@ public class People {
         }
     }
 
+    static void writeToJson (HashMap<String, ArrayList<Person>> citizens) {
+        //ArrayList<Person> list = citizens.get(entry);
+        JsonSerializer serializer = new JsonSerializer();
+        String output = serializer.serialize(citizens);
+
+        writeFile("people.json", output);
+    }
+
     static String readFile(String fileName) {
         File f = new File(fileName);
         try {
@@ -61,6 +73,17 @@ public class People {
             return new String (fileContent);
         } catch (Exception e){
             return null;
+        }
+    }
+
+    static void writeFile(String fileName, String fileContent) {
+        File f = new File(fileName);
+        try {
+            FileWriter fw = new FileWriter(f);
+            fw.write(fileContent);
+            fw.close();
+        } catch (Exception e) {
+
         }
     }
 }
