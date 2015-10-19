@@ -20,6 +20,7 @@ public class People {
         writeToJson(citizens);
     }
 
+    //Reads the file, parses data into individual Person objects, and puts those objects into lists by Country
     static void parseData(String file, HashMap<String, ArrayList<Person>> citizens) {
         String content = readFile(file);
         String[] lines = content.split("\n");
@@ -48,12 +49,14 @@ public class People {
         }
     }
 
+    //Sorts each person in a list by the last name (see compareTo override)
     static void sortMap(HashMap<String, ArrayList<Person>> citizens) {
         for (ArrayList<Person> peopleInCountry : citizens.values()) {
             Collections.sort(peopleInCountry);
         }
     }
 
+    //Serializes the keys and objects in the HashMap and writes them to a JSON file
     static void writeToJson (HashMap<String, ArrayList<Person>> citizens) {
         JsonSerializer serializer = new JsonSerializer();
         String output = serializer.include("*").serialize(citizens);
